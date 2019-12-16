@@ -74,13 +74,8 @@ BootDo 提供了常用工具进行封装，包括日志工具、缓存工具、�
 5. 密码加密：登录用户密码进行SHA1散列加密，此加密方法是不可逆的。保证密文泄露后的安全问题。
 6. 强制访问：系统对所有管理端链接都进行用户身份权限验证，防止用户直接填写url进行访问。
 
-## 演示地址
-
-## [www.bootdo.com](http://www.bootdo.com)
 
 ## 交流反馈
-
-## QQ群 669039323（满），614726589<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=54UlM7d"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="BootDo交流群" title="BootDo交流群"></a>
 
 ## 版权声明
 
