@@ -27,8 +27,9 @@ public class ReadExcel {
                 if (j <= 5) {
                     Cell[] cells = sheet.getRow(j);
                     for (int c = 0; c < cells.length; c++) {
-                        System.out.println(cells[c].getContents());
+                        System.out.printf(cells[c].getContents() + "|");
                     }
+                    System.out.println();
                 }
             }
         } catch (IOException e) {
