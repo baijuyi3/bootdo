@@ -1,4 +1,4 @@
-package com.bootdo.features.domain;
+package com.bootdo.futures.domain;
 
 import java.io.Serializable;
 import java.util.Date;

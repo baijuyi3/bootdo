@@ -1,7 +1,7 @@
-package com.bootdo.features.service;
+package com.bootdo.futures.service;
 
 
-import com.bootdo.features.domain.FuturesDO;
+import com.bootdo.futures.domain.FuturesDO;
 
 import java.util.List;
 import java.util.Map;

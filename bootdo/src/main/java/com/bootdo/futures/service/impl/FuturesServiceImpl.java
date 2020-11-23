@@ -1,8 +1,8 @@
-package com.bootdo.features.service.impl;
+package com.bootdo.futures.service.impl;
 
-import com.bootdo.features.dao.FuturesDao;
-import com.bootdo.features.domain.FuturesDO;
-import com.bootdo.features.service.FuturesService;
+import com.bootdo.futures.dao.FuturesDao;
+import com.bootdo.futures.domain.FuturesDO;
+import com.bootdo.futures.service.FuturesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

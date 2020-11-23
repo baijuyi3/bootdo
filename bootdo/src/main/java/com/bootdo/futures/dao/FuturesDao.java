@@ -1,10 +1,10 @@
-package com.bootdo.features.dao;
+package com.bootdo.futures.dao;
 
 
 import java.util.List;
 import java.util.Map;
 
-import com.bootdo.features.domain.FuturesDO;
+import com.bootdo.futures.domain.FuturesDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
