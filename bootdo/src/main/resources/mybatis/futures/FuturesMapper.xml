@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bootdo.system.dao.FuturesDao">
+<mapper namespace="com.bootdo.futures.dao.FuturesDao">
 
-    <select id="get" resultType="com.bootdo.system.domain.FuturesDO">
+    <select id="get" resultType="com.bootdo.futures.domain.FuturesDO">
 		select `id`,`trancode`,`time`,`opening`,`highest`,`lowest`,`closing`,`volume`,`ma_ma1`,`ma_ma2`,`ma_ma3`,`ma_ma4`,`ma_ma5`,`ma_ma6`,`ma_ma7`,`ma_ma8`,`vol_volume`,`vol_mavol1`,`vol_mavol2`,`macd_dif`,`macd_dea`,`macd_macd` from tb_futures where id = #{value}
 	</select>
 
-    <select id="list" resultType="com.bootdo.system.domain.FuturesDO">
+    <select id="list" resultType="com.bootdo.futures.domain.FuturesDO">
         select
         `id`,`trancode`,`time`,`opening`,`highest`,`lowest`,`closing`,`volume`,`ma_ma1`,`ma_ma2`,`ma_ma3`,`ma_ma4`,`ma_ma5`,`ma_ma6`,`ma_ma7`,`ma_ma8`,`vol_volume`,`vol_mavol1`,`vol_mavol2`,`macd_dif`,`macd_dea`,`macd_macd`
         from tb_futures
@@ -76,7 +76,7 @@
         </where>
     </select>
 
-    <insert id="save" parameterType="com.bootdo.system.domain.FuturesDO" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.bootdo.futures.domain.FuturesDO" useGeneratedKeys="true" keyProperty="id">
 		insert into tb_futures
 		(
 			`trancode`, 
@@ -84,22 +84,22 @@
 			`opening`, 
 			`highest`, 
 			`lowest`, 
-			`closing`, 
-			`volume`, 
-			`ma_ma1`, 
-			`ma_ma2`, 
-			`ma_ma3`, 
-			`ma_ma4`, 
-			`ma_ma5`, 
-			`ma_ma6`, 
-			`ma_ma7`, 
-			`ma_ma8`, 
-			`vol_volume`, 
-			`vol_mavol1`, 
-			`vol_mavol2`, 
-			`macd_dif`, 
-			`macd_dea`, 
-			`macd_macd`
+			`closing`,
+        `volume`,
+        <if test="maMa1 != null">`ma_ma1`,</if>
+        <if test="maMa2 != null">`ma_ma2`,</if>
+        <if test="maMa3 != null">`ma_ma3`,</if>
+        <if test="maMa4 != null">`ma_ma4`,</if>
+        <if test="maMa5 != null">`ma_ma5`,</if>
+        <if test="maMa6 != null">`ma_ma6`,</if>
+        <if test="maMa7 != null">`ma_ma7`,</if>
+        <if test="maMa8 != null">`ma_ma8`,</if>
+        `vol_volume`
+        <if test="volMavol1 != null">,`vol_mavol1`,</if>
+        <if test="volMavol2 != null">`vol_mavol2`,</if>
+        <if test="macdDif != null">`macd_dif`,</if>
+        <if test="macdDea != null">`macd_dea`,</if>
+        <if test="macdMacd != null">`macd_macd`</if>
 		)
 		values
 		(
@@ -108,26 +108,26 @@
 			#{opening}, 
 			#{highest}, 
 			#{lowest}, 
-			#{closing}, 
-			#{volume}, 
-			#{maMa1}, 
-			#{maMa2}, 
-			#{maMa3}, 
-			#{maMa4}, 
-			#{maMa5}, 
-			#{maMa6}, 
-			#{maMa7}, 
-			#{maMa8}, 
-			#{volVolume}, 
-			#{volMavol1}, 
-			#{volMavol2}, 
-			#{macdDif}, 
-			#{macdDea}, 
-			#{macdMacd}
+			#{closing},
+        #{volume},
+        <if test="maMa1 != null">#{maMa1},</if>
+        <if test="maMa2 != null">#{maMa2},</if>
+        <if test="maMa3 != null">#{maMa3},</if>
+        <if test="maMa4 != null">#{maMa4},</if>
+        <if test="maMa5 != null">#{maMa5},</if>
+        <if test="maMa6 != null">#{maMa6},</if>
+        <if test="maMa7 != null">#{maMa7},</if>
+        <if test="maMa8 != null">#{maMa8},</if>
+        #{volVolume}
+        <if test="volMavol1 != null">,#{volMavol1},</if>
+        <if test="volMavol2 != null">#{volMavol2},</if>
+        <if test="macdDif != null">#{macdDif},</if>
+        <if test="macdDea != null">#{macdDea},</if>
+        <if test="macdMacd != null">#{macdMacd}</if>
 		)
 	</insert>
 
-    <update id="update" parameterType="com.bootdo.system.domain.FuturesDO">
+    <update id="update" parameterType="com.bootdo.futures.domain.FuturesDO">
         update tb_futures
         <set>
             <if test="trancode != null">`trancode` = #{trancode},</if>
