@@ -47,21 +47,21 @@ public class ReadExcelRM implements ApplicationContextAware {
         File file = new File("D:\\Program Files\\交易\\数据");
         File[] tempList = file.listFiles();
 
-//        if(file.isDirectory()){
-//            for (int i = 0; i < tempList.length ; i++) {
-//                String extString = tempList[i].toString().substring(tempList[i].toString().lastIndexOf("."));
-//                System.out.println(tempList[i].toString());
-//                files.add(tempList[i].toString());
-//               if (".xlsx".equals(extString) || ".xls".equals(extString)){
-//                    readExcel(tempList[i].toString());
-//                }else if (".txt".equals(extString)){
-//                    readTxt(tempList[i].toString());
-//                }
-//            }
-//        }
+        if (file.isDirectory()) {
+            for (int i = 0; i < tempList.length; i++) {
+                String extString = tempList[i].toString().substring(tempList[i].toString().lastIndexOf("."));
+                System.out.println(tempList[i].toString());
+                files.add(tempList[i].toString());
+                if (".xlsx".equals(extString) || ".xls".equals(extString)) {
+                    readExcel(tempList[i].toString());
+                } else if (".txt".equals(extString)) {
+                    readTxt(tempList[i].toString());
+                }
+            }
+        }
 
 
-        readTxt("D:\\Program Files\\交易\\数据\\datahistory2010.txt");
+//        readTxt("D:\\Program Files\\交易\\数据\\datahistory2010.txt");
 //        readExcel("D:\\Program Files\\交易\\数据\\RM2015.xls");
     }
 
@@ -76,7 +76,7 @@ public class ReadExcelRM implements ApplicationContextAware {
             String readLine = "";
             String[] trans = new String[20];
             while ((readLine = buf.readLine()) != null) {
-                if (i < 3) {
+
                     System.out.println(readLine);
                     trans = readLine.split("\\\t\\|");
 
@@ -103,7 +103,7 @@ public class ReadExcelRM implements ApplicationContextAware {
                     }
                 }
                 i++;
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -135,7 +135,7 @@ public class ReadExcelRM implements ApplicationContextAware {
         int row_total = sheet.getPhysicalNumberOfRows();
         int tranCodeNumber = 0;
         for (int j = 0; j < row_total; j++) {
-            if (j <= 3) {
+            if (j <= 200000) {
                 Row row = sheet.getRow(j);
                 if (tranCodeNumber != 0) {
                     try {

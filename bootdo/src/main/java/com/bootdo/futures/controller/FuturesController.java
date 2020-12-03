@@ -28,20 +28,20 @@ import com.bootdo.common.utils.R;
  */
 
 @Controller
-@RequestMapping("/system/futures")
+@RequestMapping("futures")
 public class FuturesController {
     @Autowired
     private FuturesService futuresService;
 
+
     @GetMapping()
-    @RequiresPermissions("system:futures:futures")
     String Futures() {
-        return "system/futures/futures";
+        return "futures/futures";
     }
 
-    @ResponseBody
+
     @GetMapping("/list")
-    @RequiresPermissions("system:futures:futures")
+    @ResponseBody
     public PageUtils list(@RequestParam Map<String, Object> params) {
         //查询列表数据
         Query query = new Query(params);
@@ -51,18 +51,23 @@ public class FuturesController {
         return pageUtils;
     }
 
+
+    @GetMapping("/graph_echarts")
+    String chart() {
+        return "futures/graph_echarts";
+    }
+
     @GetMapping("/add")
-    @RequiresPermissions("system:futures:add")
+    @RequiresPermissions("futures:add")
     String add() {
-        return "system/futures/add";
+        return "futures/add";
     }
 
     @GetMapping("/edit/{id}")
-    @RequiresPermissions("system:futures:edit")
     String edit(@PathVariable("id") Integer id, Model model) {
         FuturesDO futures = futuresService.get(id);
         model.addAttribute("futures", futures);
-        return "system/futures/edit";
+        return "futures/edit";
     }
 
     /**
@@ -70,7 +75,6 @@ public class FuturesController {
      */
     @ResponseBody
     @PostMapping("/save")
-    @RequiresPermissions("system:futures:add")
     public R save(FuturesDO futures) {
         if (futuresService.save(futures) > 0) {
             return R.ok();
@@ -83,7 +87,6 @@ public class FuturesController {
      */
     @ResponseBody
     @RequestMapping("/update")
-    @RequiresPermissions("system:futures:edit")
     public R update(FuturesDO futures) {
         futuresService.update(futures);
         return R.ok();
@@ -94,7 +97,6 @@ public class FuturesController {
      */
     @PostMapping("/remove")
     @ResponseBody
-    @RequiresPermissions("system:futures:remove")
     public R remove(Integer id) {
         if (futuresService.remove(id) > 0) {
             return R.ok();
@@ -107,7 +109,6 @@ public class FuturesController {
      */
     @PostMapping("/batchRemove")
     @ResponseBody
-    @RequiresPermissions("system:futures:batchRemove")
     public R remove(@RequestParam("ids[]") Integer[] ids) {
         futuresService.batchRemove(ids);
         return R.ok();
