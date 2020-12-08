@@ -26,6 +26,11 @@ public class FuturesServiceImpl implements FuturesService {
     }
 
     @Override
+    public List<FuturesDO> likeList(Map<String, Object> map) {
+        return futuresDao.likeList(map);
+    }
+
+    @Override
     public int count(Map<String, Object> map) {
         return futuresDao.count(map);
     }

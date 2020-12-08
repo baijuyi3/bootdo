@@ -17,6 +17,8 @@ public interface FuturesDao {
 
     FuturesDO get(Integer id);
 
+    List<FuturesDO> likeList(Map<String, Object> map);
+
     List<FuturesDO> list(Map<String, Object> map);
 
     int count(Map<String, Object> map);

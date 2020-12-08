@@ -17,6 +17,8 @@ public interface FuturesService {
 
     List<FuturesDO> list(Map<String, Object> map);
 
+    List<FuturesDO> likeList(Map<String, Object> map);
+
     int count(Map<String, Object> map);
 
     int save(FuturesDO futures);

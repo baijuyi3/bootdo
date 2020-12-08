@@ -40,7 +40,48 @@
                 order by ${sort} ${order}
             </when>
             <otherwise>
-                order by id desc
+                order by time desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="likeList" resultType="com.bootdo.futures.domain.FuturesDO">
+        select
+        `id`,`trancode`,`time`,`opening`,`highest`,`lowest`,`closing`,`volume`,`ma_ma1`,`ma_ma2`,`ma_ma3`,`ma_ma4`,`ma_ma5`,`ma_ma6`,`ma_ma7`,`ma_ma8`,`vol_volume`,`vol_mavol1`,`vol_mavol2`,`macd_dif`,`macd_dea`,`macd_macd`
+        from tb_futures
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="trancode != null and trancode != ''">and trancode LIKE #{trancode}</if>
+            <if test="time != null and time != ''">and time = #{time}</if>
+            <if test="opening != null and opening != ''">and opening = #{opening}</if>
+            <if test="highest != null and highest != ''">and highest = #{highest}</if>
+            <if test="lowest != null and lowest != ''">and lowest = #{lowest}</if>
+            <if test="closing != null and closing != ''">and closing = #{closing}</if>
+            <if test="volume != null and volume != ''">and volume = #{volume}</if>
+            <if test="maMa1 != null and maMa1 != ''">and ma_ma1 = #{maMa1}</if>
+            <if test="maMa2 != null and maMa2 != ''">and ma_ma2 = #{maMa2}</if>
+            <if test="maMa3 != null and maMa3 != ''">and ma_ma3 = #{maMa3}</if>
+            <if test="maMa4 != null and maMa4 != ''">and ma_ma4 = #{maMa4}</if>
+            <if test="maMa5 != null and maMa5 != ''">and ma_ma5 = #{maMa5}</if>
+            <if test="maMa6 != null and maMa6 != ''">and ma_ma6 = #{maMa6}</if>
+            <if test="maMa7 != null and maMa7 != ''">and ma_ma7 = #{maMa7}</if>
+            <if test="maMa8 != null and maMa8 != ''">and ma_ma8 = #{maMa8}</if>
+            <if test="volVolume != null and volVolume != ''">and vol_volume = #{volVolume}</if>
+            <if test="volMavol1 != null and volMavol1 != ''">and vol_mavol1 = #{volMavol1}</if>
+            <if test="volMavol2 != null and volMavol2 != ''">and vol_mavol2 = #{volMavol2}</if>
+            <if test="macdDif != null and macdDif != ''">and macd_dif = #{macdDif}</if>
+            <if test="macdDea != null and macdDea != ''">and macd_dea = #{macdDea}</if>
+            <if test="macdMacd != null and macdMacd != ''">and macd_macd = #{macdMacd}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by time
             </otherwise>
         </choose>
         <if test="offset != null and limit != null">
