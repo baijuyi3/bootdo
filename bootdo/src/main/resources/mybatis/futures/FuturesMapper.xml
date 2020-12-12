@@ -75,6 +75,9 @@
             <if test="macdDif != null and macdDif != ''">and macd_dif = #{macdDif}</if>
             <if test="macdDea != null and macdDea != ''">and macd_dea = #{macdDea}</if>
             <if test="macdMacd != null and macdMacd != ''">and macd_macd = #{macdMacd}</if>
+            <if test="monthExcept != null and monthExcept != ''">and date_format(time,'%m') != #{monthExcept}</if>
+            <if test="dateMax != null and dateMax != ''">and `time` &lt;= #{dateMax}</if>
+            <if test="dateMin != null and dateMin != ''">and `time` &gt;= #{dateMax}</if>
         </where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
