@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.system.dao.ChartFuturesDao">
+
+    <select id="get" resultType="com.bootdo.system.domain.ChartFuturesDO">
+		select `id`,`trancode`,`during_time`,`method_id`,`profit`,`gross_profit`,`gross_loss`,`total_times`,`profit_times`,`loss_times`,`profit_rate`,`single_profit_max`,`single_profit_avg`,`single_loss_max`,`single_loss_avg`,`profit_loss_rate`,`profit_loss_avg`,`profit_running_times`,`loss_running_times`,`loss_closing_position`,`account_price_least`,`max_contract`,`gain_rate` from tb_chart_futures where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.bootdo.system.domain.ChartFuturesDO">
+        select
+        `id`,`trancode`,`during_time`,`method_id`,`profit`,`gross_profit`,`gross_loss`,`total_times`,`profit_times`,`loss_times`,`profit_rate`,`single_profit_max`,`single_profit_avg`,`single_loss_max`,`single_loss_avg`,`profit_loss_rate`,`profit_loss_avg`,`profit_running_times`,`loss_running_times`,`loss_closing_position`,`account_price_least`,`max_contract`,`gain_rate`
+        from tb_chart_futures
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="trancode != null and trancode != ''">and trancode = #{trancode}</if>
+            <if test="duringTime != null and duringTime != ''">and during_time = #{duringTime}</if>
+            <if test="methodId != null and methodId != ''">and method_id = #{methodId}</if>
+            <if test="profit != null and profit != ''">and profit = #{profit}</if>
+            <if test="grossProfit != null and grossProfit != ''">and gross_profit = #{grossProfit}</if>
+            <if test="grossLoss != null and grossLoss != ''">and gross_loss = #{grossLoss}</if>
+            <if test="totalTimes != null and totalTimes != ''">and total_times = #{totalTimes}</if>
+            <if test="profitTimes != null and profitTimes != ''">and profit_times = #{profitTimes}</if>
+            <if test="lossTimes != null and lossTimes != ''">and loss_times = #{lossTimes}</if>
+            <if test="profitRate != null and profitRate != ''">and profit_rate = #{profitRate}</if>
+            <if test="singleProfitMax != null and singleProfitMax != ''">and single_profit_max = #{singleProfitMax}</if>
+            <if test="singleProfitAvg != null and singleProfitAvg != ''">and single_profit_avg = #{singleProfitAvg}</if>
+            <if test="singleLossMax != null and singleLossMax != ''">and single_loss_max = #{singleLossMax}</if>
+            <if test="singleLossAvg != null and singleLossAvg != ''">and single_loss_avg = #{singleLossAvg}</if>
+            <if test="profitLossRate != null and profitLossRate != ''">and profit_loss_rate = #{profitLossRate}</if>
+            <if test="profitLossAvg != null and profitLossAvg != ''">and profit_loss_avg = #{profitLossAvg}</if>
+            <if test="profitRunningTimes != null and profitRunningTimes != ''">and profit_running_times =
+                #{profitRunningTimes}
+            </if>
+            <if test="lossRunningTimes != null and lossRunningTimes != ''">and loss_running_times =
+                #{lossRunningTimes}
+            </if>
+            <if test="lossClosingPosition != null and lossClosingPosition != ''">and loss_closing_position =
+                #{lossClosingPosition}
+            </if>
+            <if test="accountPriceLeast != null and accountPriceLeast != ''">and account_price_least =
+                #{accountPriceLeast}
+            </if>
+            <if test="maxContract != null and maxContract != ''">and max_contract = #{maxContract}</if>
+            <if test="gainRate != null and gainRate != ''">and gain_rate = #{gainRate}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from tb_chart_futures
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="trancode != null and trancode != ''">and trancode = #{trancode}</if>
+            <if test="duringTime != null and duringTime != ''">and during_time = #{duringTime}</if>
+            <if test="methodId != null and methodId != ''">and method_id = #{methodId}</if>
+            <if test="profit != null and profit != ''">and profit = #{profit}</if>
+            <if test="grossProfit != null and grossProfit != ''">and gross_profit = #{grossProfit}</if>
+            <if test="grossLoss != null and grossLoss != ''">and gross_loss = #{grossLoss}</if>
+            <if test="totalTimes != null and totalTimes != ''">and total_times = #{totalTimes}</if>
+            <if test="profitTimes != null and profitTimes != ''">and profit_times = #{profitTimes}</if>
+            <if test="lossTimes != null and lossTimes != ''">and loss_times = #{lossTimes}</if>
+            <if test="profitRate != null and profitRate != ''">and profit_rate = #{profitRate}</if>
+            <if test="singleProfitMax != null and singleProfitMax != ''">and single_profit_max = #{singleProfitMax}</if>
+            <if test="singleProfitAvg != null and singleProfitAvg != ''">and single_profit_avg = #{singleProfitAvg}</if>
+            <if test="singleLossMax != null and singleLossMax != ''">and single_loss_max = #{singleLossMax}</if>
+            <if test="singleLossAvg != null and singleLossAvg != ''">and single_loss_avg = #{singleLossAvg}</if>
+            <if test="profitLossRate != null and profitLossRate != ''">and profit_loss_rate = #{profitLossRate}</if>
+            <if test="profitLossAvg != null and profitLossAvg != ''">and profit_loss_avg = #{profitLossAvg}</if>
+            <if test="profitRunningTimes != null and profitRunningTimes != ''">and profit_running_times =
+                #{profitRunningTimes}
+            </if>
+            <if test="lossRunningTimes != null and lossRunningTimes != ''">and loss_running_times =
+                #{lossRunningTimes}
+            </if>
+            <if test="lossClosingPosition != null and lossClosingPosition != ''">and loss_closing_position =
+                #{lossClosingPosition}
+            </if>
+            <if test="accountPriceLeast != null and accountPriceLeast != ''">and account_price_least =
+                #{accountPriceLeast}
+            </if>
+            <if test="maxContract != null and maxContract != ''">and max_contract = #{maxContract}</if>
+            <if test="gainRate != null and gainRate != ''">and gain_rate = #{gainRate}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bootdo.system.domain.ChartFuturesDO" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_chart_futures
+		(
+			`trancode`, 
+			`during_time`, 
+			`method_id`, 
+			`profit`, 
+			`gross_profit`, 
+			`gross_loss`, 
+			`total_times`, 
+			`profit_times`, 
+			`loss_times`, 
+			`profit_rate`, 
+			`single_profit_max`, 
+			`single_profit_avg`, 
+			`single_loss_max`, 
+			`single_loss_avg`, 
+			`profit_loss_rate`, 
+			`profit_loss_avg`, 
+			`profit_running_times`, 
+			`loss_running_times`, 
+			`loss_closing_position`, 
+			`account_price_least`, 
+			`max_contract`, 
+			`gain_rate`
+		)
+		values
+		(
+			#{trancode}, 
+			#{duringTime}, 
+			#{methodId}, 
+			#{profit}, 
+			#{grossProfit}, 
+			#{grossLoss}, 
+			#{totalTimes}, 
+			#{profitTimes}, 
+			#{lossTimes}, 
+			#{profitRate}, 
+			#{singleProfitMax}, 
+			#{singleProfitAvg}, 
+			#{singleLossMax}, 
+			#{singleLossAvg}, 
+			#{profitLossRate}, 
+			#{profitLossAvg}, 
+			#{profitRunningTimes}, 
+			#{lossRunningTimes}, 
+			#{lossClosingPosition}, 
+			#{accountPriceLeast}, 
+			#{maxContract}, 
+			#{gainRate}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.bootdo.system.domain.ChartFuturesDO">
+        update tb_chart_futures
+        <set>
+            <if test="trancode != null">`trancode` = #{trancode},</if>
+            <if test="duringTime != null">`during_time` = #{duringTime},</if>
+            <if test="methodId != null">`method_id` = #{methodId},</if>
+            <if test="profit != null">`profit` = #{profit},</if>
+            <if test="grossProfit != null">`gross_profit` = #{grossProfit},</if>
+            <if test="grossLoss != null">`gross_loss` = #{grossLoss},</if>
+            <if test="totalTimes != null">`total_times` = #{totalTimes},</if>
+            <if test="profitTimes != null">`profit_times` = #{profitTimes},</if>
+            <if test="lossTimes != null">`loss_times` = #{lossTimes},</if>
+            <if test="profitRate != null">`profit_rate` = #{profitRate},</if>
+            <if test="singleProfitMax != null">`single_profit_max` = #{singleProfitMax},</if>
+            <if test="singleProfitAvg != null">`single_profit_avg` = #{singleProfitAvg},</if>
+            <if test="singleLossMax != null">`single_loss_max` = #{singleLossMax},</if>
+            <if test="singleLossAvg != null">`single_loss_avg` = #{singleLossAvg},</if>
+            <if test="profitLossRate != null">`profit_loss_rate` = #{profitLossRate},</if>
+            <if test="profitLossAvg != null">`profit_loss_avg` = #{profitLossAvg},</if>
+            <if test="profitRunningTimes != null">`profit_running_times` = #{profitRunningTimes},</if>
+            <if test="lossRunningTimes != null">`loss_running_times` = #{lossRunningTimes},</if>
+            <if test="lossClosingPosition != null">`loss_closing_position` = #{lossClosingPosition},</if>
+            <if test="accountPriceLeast != null">`account_price_least` = #{accountPriceLeast},</if>
+            <if test="maxContract != null">`max_contract` = #{maxContract},</if>
+            <if test="gainRate != null">`gain_rate` = #{gainRate}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from tb_chart_futures where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from tb_chart_futures where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

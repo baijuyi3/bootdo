@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.system.dao.RuleDao">
+
+    <select id="get" resultType="com.bootdo.system.domain.RuleDO">
+		select `id`,`rule_id`,`rule_name`,`method`,`describe`,`trancode`,`filler` from tb_rule where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.bootdo.system.domain.RuleDO">
+        select `id`,`rule_id`,`rule_name`,`method`,`describe`,`trancode`,`filler` from tb_rule
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="ruleId != null and ruleId != ''">and rule_id = #{ruleId}</if>
+            <if test="ruleName != null and ruleName != ''">and rule_name = #{ruleName}</if>
+            <if test="method != null and method != ''">and method = #{method}</if>
+            <if test="describe != null and describe != ''">and describe = #{describe}</if>
+            <if test="trancode != null and trancode != ''">and trancode = #{trancode}</if>
+            <if test="filler != null and filler != ''">and filler = #{filler}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from tb_rule
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="ruleId != null and ruleId != ''">and rule_id = #{ruleId}</if>
+            <if test="ruleName != null and ruleName != ''">and rule_name = #{ruleName}</if>
+            <if test="method != null and method != ''">and method = #{method}</if>
+            <if test="describe != null and describe != ''">and describe = #{describe}</if>
+            <if test="trancode != null and trancode != ''">and trancode = #{trancode}</if>
+            <if test="filler != null and filler != ''">and filler = #{filler}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bootdo.system.domain.RuleDO" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_rule
+		(
+			`rule_id`, 
+			`rule_name`, 
+			`method`, 
+			`describe`, 
+			`trancode`, 
+			`filler`
+		)
+		values
+		(
+			#{ruleId}, 
+			#{ruleName}, 
+			#{method}, 
+			#{describe}, 
+			#{trancode}, 
+			#{filler}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.bootdo.system.domain.RuleDO">
+        update tb_rule
+        <set>
+            <if test="ruleId != null">`rule_id` = #{ruleId},</if>
+            <if test="ruleName != null">`rule_name` = #{ruleName},</if>
+            <if test="method != null">`method` = #{method},</if>
+            <if test="describe != null">`describe` = #{describe},</if>
+            <if test="trancode != null">`trancode` = #{trancode},</if>
+            <if test="filler != null">`filler` = #{filler}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from tb_rule where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from tb_rule where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
