@@ -84,10 +84,10 @@ public class ReadExcelRM implements ApplicationContextAware {
                         try {
                             futures.setTime(simpleDateFormat.parse(trans[tranCodeNumber - 1].split("\\|")[0].replaceAll("-", "")));
                             futures.setTrancode(trans[tranCodeNumber - 1].split("\\|")[1]);
-                            futures.setOpening(Float.parseFloat(trans[tranCodeNumber + 1].replaceAll(",", "")));
-                            futures.setHighest(Float.parseFloat(trans[tranCodeNumber + 2].replaceAll(",", "")));
-                            futures.setLowest(Float.parseFloat(trans[tranCodeNumber + 3].replaceAll(",", "")));
-                            futures.setClosing(Float.parseFloat(trans[tranCodeNumber + 4].replaceAll(",", "")));
+                            futures.setOpening(Double.parseDouble(trans[tranCodeNumber + 1].replaceAll(",", "")));
+                            futures.setHighest(Double.parseDouble(trans[tranCodeNumber + 2].replaceAll(",", "")));
+                            futures.setLowest(Double.parseDouble(trans[tranCodeNumber + 3].replaceAll(",", "")));
+                            futures.setClosing(Double.parseDouble(trans[tranCodeNumber + 4].replaceAll(",", "")));
                             futures.setVolume(Integer.parseInt(trans[tranCodeNumber + 8].replaceAll(",", "")));
                             futuresService.save(futures);
                         } catch (Exception e) {
@@ -141,10 +141,10 @@ public class ReadExcelRM implements ApplicationContextAware {
                     try {
                         futures.setTrancode(row.getCell(tranCodeNumber).getRichStringCellValue().getString());
                         futures.setTime(simpleDateFormat2.parse(row.getCell(tranCodeNumber - 1).getRichStringCellValue().getString()));
-                        futures.setOpening(Float.parseFloat(row.getCell(tranCodeNumber + 2).getRichStringCellValue().getString().replaceAll(",", "")));
-                        futures.setHighest(Float.parseFloat(row.getCell(tranCodeNumber + 3).getRichStringCellValue().getString().replaceAll(",", "")));
-                        futures.setLowest(Float.parseFloat(row.getCell(tranCodeNumber + 4).getRichStringCellValue().getString().replaceAll(",", "")));
-                        futures.setClosing(Float.parseFloat(row.getCell(tranCodeNumber + 5).getRichStringCellValue().getString().replaceAll(",", "")));
+                        futures.setOpening(Double.parseDouble(row.getCell(tranCodeNumber + 2).getRichStringCellValue().getString().replaceAll(",", "")));
+                        futures.setHighest(Double.parseDouble(row.getCell(tranCodeNumber + 3).getRichStringCellValue().getString().replaceAll(",", "")));
+                        futures.setLowest(Double.parseDouble(row.getCell(tranCodeNumber + 4).getRichStringCellValue().getString().replaceAll(",", "")));
+                        futures.setClosing(Double.parseDouble(row.getCell(tranCodeNumber + 5).getRichStringCellValue().getString().replaceAll(",", "")));
                         futures.setVolume(Integer.parseInt(row.getCell(tranCodeNumber + 9).getRichStringCellValue().getString().replaceAll(",", "")));
                         futuresService.save(futures);
                     } catch (Exception e) {

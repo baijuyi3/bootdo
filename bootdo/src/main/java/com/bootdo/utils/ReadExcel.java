@@ -103,10 +103,10 @@ public class ReadExcel implements ApplicationContextAware {
                     try {
                         futures.setTrancode(row.getCell(tranCodeNumber).getRichStringCellValue().getString());
                         futures.setTime(simpleDateFormat.parse(row.getCell(tranCodeNumber + 1).getRichStringCellValue().getString()));
-                        futures.setOpening((float) row.getCell(tranCodeNumber + 4).getNumericCellValue());
-                        futures.setHighest((float) row.getCell(tranCodeNumber + 5).getNumericCellValue());
-                        futures.setLowest((float) row.getCell(tranCodeNumber + 6).getNumericCellValue());
-                        futures.setClosing((float) row.getCell(tranCodeNumber + 7).getNumericCellValue());
+                        futures.setOpening((Double) row.getCell(tranCodeNumber + 4).getNumericCellValue());
+                        futures.setHighest((Double) row.getCell(tranCodeNumber + 5).getNumericCellValue());
+                        futures.setLowest((Double) row.getCell(tranCodeNumber + 6).getNumericCellValue());
+                        futures.setClosing((Double) row.getCell(tranCodeNumber + 7).getNumericCellValue());
                         futures.setVolume((int) row.getCell(tranCodeNumber + 11).getNumericCellValue());
                         futures.setVolVolume((int) row.getCell(tranCodeNumber + 13).getNumericCellValue());
                         futuresService.save(futures);
@@ -149,10 +149,10 @@ public class ReadExcel implements ApplicationContextAware {
                         try {
                             futures.setTrancode(csvList.get(i)[tranCodeNumber]);
                             futures.setTime(simpleDateFormat.parse(csvList.get(i)[tranCodeNumber + 1]));
-                            futures.setOpening(Float.parseFloat(csvList.get(i)[tranCodeNumber + 4]));
-                            futures.setHighest(Float.parseFloat(csvList.get(i)[tranCodeNumber + 5]));
-                            futures.setLowest(Float.parseFloat(csvList.get(i)[tranCodeNumber + 6]));
-                            futures.setClosing(Float.parseFloat(csvList.get(i)[tranCodeNumber + 7]));
+                            futures.setOpening(Double.parseDouble(csvList.get(i)[tranCodeNumber + 4]));
+                            futures.setHighest(Double.parseDouble(csvList.get(i)[tranCodeNumber + 5]));
+                            futures.setLowest(Double.parseDouble(csvList.get(i)[tranCodeNumber + 6]));
+                            futures.setClosing(Double.parseDouble(csvList.get(i)[tranCodeNumber + 7]));
                             futures.setVolume(Integer.parseInt(csvList.get(i)[tranCodeNumber + 11]));
                             futures.setVolVolume(Integer.parseInt(csvList.get(i)[tranCodeNumber + 13]));
                             futuresService.save(futures);

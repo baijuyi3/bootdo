@@ -19,43 +19,43 @@ public class FuturesDO implements Serializable {
     //时间
     private Date time;
     //开盘
-    private Float opening;
+    private Double opening;
     //最高
-    private Float highest;
+    private Double highest;
     //最低
-    private Float lowest;
+    private Double lowest;
     //收盘
-    private Float closing;
+    private Double closing;
     //成交量
     private Integer volume;
     //均线1
-    private Float maMa1;
+    private Double maMa1;
     //均线2
-    private Float maMa2;
+    private Double maMa2;
     //均线3
-    private Float maMa3;
+    private Double maMa3;
     //均线4
-    private Float maMa4;
+    private Double maMa4;
     //均线5
-    private Float maMa5;
+    private Double maMa5;
     //均线6
-    private Float maMa6;
+    private Double maMa6;
     //均线7
-    private Float maMa7;
+    private Double maMa7;
     //均线8
-    private Float maMa8;
+    private Double maMa8;
     //VOL.成交量
     private Integer volVolume;
     //成交量均线1
-    private Float volMavol1;
+    private Double volMavol1;
     //成交量均线2
-    private Float volMavol2;
+    private Double volMavol2;
     //DIF
-    private Float macdDif;
+    private Double macdDif;
     //DEA
-    private Float macdDea;
+    private Double macdDea;
     //MACD
-    private Float macdMacd;
+    private Double macdMacd;
 
     /**
      * 设置：id
@@ -102,56 +102,56 @@ public class FuturesDO implements Serializable {
     /**
      * 设置：开盘
      */
-    public void setOpening(Float opening) {
+    public void setOpening(Double opening) {
         this.opening = opening;
     }
 
     /**
      * 获取：开盘
      */
-    public Float getOpening() {
+    public Double getOpening() {
         return opening;
     }
 
     /**
      * 设置：最高
      */
-    public void setHighest(Float highest) {
+    public void setHighest(Double highest) {
         this.highest = highest;
     }
 
     /**
      * 获取：最高
      */
-    public Float getHighest() {
+    public Double getHighest() {
         return highest;
     }
 
     /**
      * 设置：最低
      */
-    public void setLowest(Float lowest) {
+    public void setLowest(Double lowest) {
         this.lowest = lowest;
     }
 
     /**
      * 获取：最低
      */
-    public Float getLowest() {
+    public Double getLowest() {
         return lowest;
     }
 
     /**
      * 设置：收盘
      */
-    public void setClosing(Float closing) {
+    public void setClosing(Double closing) {
         this.closing = closing;
     }
 
     /**
      * 获取：收盘
      */
-    public Float getClosing() {
+    public Double getClosing() {
         return closing;
     }
 
@@ -172,112 +172,112 @@ public class FuturesDO implements Serializable {
     /**
      * 设置：均线1
      */
-    public void setMaMa1(Float maMa1) {
+    public void setMaMa1(Double maMa1) {
         this.maMa1 = maMa1;
     }
 
     /**
      * 获取：均线1
      */
-    public Float getMaMa1() {
+    public Double getMaMa1() {
         return maMa1;
     }
 
     /**
      * 设置：均线2
      */
-    public void setMaMa2(Float maMa2) {
+    public void setMaMa2(Double maMa2) {
         this.maMa2 = maMa2;
     }
 
     /**
      * 获取：均线2
      */
-    public Float getMaMa2() {
+    public Double getMaMa2() {
         return maMa2;
     }
 
     /**
      * 设置：均线3
      */
-    public void setMaMa3(Float maMa3) {
+    public void setMaMa3(Double maMa3) {
         this.maMa3 = maMa3;
     }
 
     /**
      * 获取：均线3
      */
-    public Float getMaMa3() {
+    public Double getMaMa3() {
         return maMa3;
     }
 
     /**
      * 设置：均线4
      */
-    public void setMaMa4(Float maMa4) {
+    public void setMaMa4(Double maMa4) {
         this.maMa4 = maMa4;
     }
 
     /**
      * 获取：均线4
      */
-    public Float getMaMa4() {
+    public Double getMaMa4() {
         return maMa4;
     }
 
     /**
      * 设置：均线5
      */
-    public void setMaMa5(Float maMa5) {
+    public void setMaMa5(Double maMa5) {
         this.maMa5 = maMa5;
     }
 
     /**
      * 获取：均线5
      */
-    public Float getMaMa5() {
+    public Double getMaMa5() {
         return maMa5;
     }
 
     /**
      * 设置：均线6
      */
-    public void setMaMa6(Float maMa6) {
+    public void setMaMa6(Double maMa6) {
         this.maMa6 = maMa6;
     }
 
     /**
      * 获取：均线6
      */
-    public Float getMaMa6() {
+    public Double getMaMa6() {
         return maMa6;
     }
 
     /**
      * 设置：均线7
      */
-    public void setMaMa7(Float maMa7) {
+    public void setMaMa7(Double maMa7) {
         this.maMa7 = maMa7;
     }
 
     /**
      * 获取：均线7
      */
-    public Float getMaMa7() {
+    public Double getMaMa7() {
         return maMa7;
     }
 
     /**
      * 设置：均线8
      */
-    public void setMaMa8(Float maMa8) {
+    public void setMaMa8(Double maMa8) {
         this.maMa8 = maMa8;
     }
 
     /**
      * 获取：均线8
      */
-    public Float getMaMa8() {
+    public Double getMaMa8() {
         return maMa8;
     }
 
@@ -298,70 +298,70 @@ public class FuturesDO implements Serializable {
     /**
      * 设置：成交量均线1
      */
-    public void setVolMavol1(Float volMavol1) {
+    public void setVolMavol1(Double volMavol1) {
         this.volMavol1 = volMavol1;
     }
 
     /**
      * 获取：成交量均线1
      */
-    public Float getVolMavol1() {
+    public Double getVolMavol1() {
         return volMavol1;
     }
 
     /**
      * 设置：成交量均线2
      */
-    public void setVolMavol2(Float volMavol2) {
+    public void setVolMavol2(Double volMavol2) {
         this.volMavol2 = volMavol2;
     }
 
     /**
      * 获取：成交量均线2
      */
-    public Float getVolMavol2() {
+    public Double getVolMavol2() {
         return volMavol2;
     }
 
     /**
      * 设置：DIF
      */
-    public void setMacdDif(Float macdDif) {
+    public void setMacdDif(Double macdDif) {
         this.macdDif = macdDif;
     }
 
     /**
      * 获取：DIF
      */
-    public Float getMacdDif() {
+    public Double getMacdDif() {
         return macdDif;
     }
 
     /**
      * 设置：DEA
      */
-    public void setMacdDea(Float macdDea) {
+    public void setMacdDea(Double macdDea) {
         this.macdDea = macdDea;
     }
 
     /**
      * 获取：DEA
      */
-    public Float getMacdDea() {
+    public Double getMacdDea() {
         return macdDea;
     }
 
     /**
      * 设置：MACD
      */
-    public void setMacdMacd(Float macdMacd) {
+    public void setMacdMacd(Double macdMacd) {
         this.macdMacd = macdMacd;
     }
 
     /**
      * 获取：MACD
      */
-    public Float getMacdMacd() {
+    public Double getMacdMacd() {
         return macdMacd;
     }
 }

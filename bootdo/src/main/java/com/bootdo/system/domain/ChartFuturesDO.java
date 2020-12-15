@@ -24,15 +24,15 @@ public class ChartFuturesDO implements Serializable {
     private Double profit;
     //毛利润
     private Double grossProfit;
-    //
+    //总亏损
     private Double grossLoss;
-    //
+    //总交易次数
     private Integer totalTimes;
-    //
+    //总盈利交易次数
     private Integer profitTimes;
-    //
+    //总亏损交易次数
     private Integer lossTimes;
-    //
+    //利润率
     private Double profitRate;
     //最大单笔盈利
     private Double singleProfitMax;
@@ -46,9 +46,9 @@ public class ChartFuturesDO implements Serializable {
     private Double profitLossRate;
     //平均交易盈亏总额
     private Double profitLossAvg;
-    //
+    //最多连续盈利次数
     private Integer profitRunningTimes;
-    //
+    //最多连续亏损次数
     private Integer lossRunningTimes;
     //最大平仓亏损
     private Double lossClosingPosition;
