@@ -17,8 +17,8 @@ public class TestDemo {
 
     @Test
     public void test() {
-        redisTemplate.opsForValue().set("a", "b");
-        System.out.println(redisTemplate.opsForValue().get("a"));
+        byte[] b = new byte[]{100, 50, 104, 107, 89, 88, 82, 104, 77, 68, 69, 61};
+        System.out.println(new String(b));
     }
 
     ;
