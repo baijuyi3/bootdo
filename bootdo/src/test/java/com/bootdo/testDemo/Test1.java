@@ -28,6 +28,7 @@ public class Test1 {
         try {
             System.out.println(i(BR, Key));
             System.out.println(j(rcode, Key));
+            System.out.println(encrypt(BR, "tdx11111"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,6 +44,43 @@ public class Test1 {
 //        }
 
 
+    }
+
+    public static String encrypt(String data, String key) throws Exception {
+        byte[] bt = encrypt(data.getBytes(), key.getBytes());
+        String strs = (new BASE64Encoder()).encode(bt);
+        return strs;
+    }
+
+    private static byte[] encrypt(byte[] data, byte[] key) throws Exception {
+        SecureRandom sr = new SecureRandom();
+        DESKeySpec dks = new DESKeySpec(key);
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+        SecretKey securekey = keyFactory.generateSecret(dks);
+        Cipher cipher = Cipher.getInstance("DES");
+        cipher.init(1, securekey, sr);
+        return cipher.doFinal(data);
+    }
+
+    public static String decrypt(String data, String key) throws IOException, Exception {
+        if (data == null) {
+            return null;
+        } else {
+            BASE64Decoder decoder = new BASE64Decoder();
+            byte[] buf = decoder.decodeBuffer(data);
+            byte[] bt = decrypt(buf, key.getBytes());
+            return new String(bt);
+        }
+    }
+
+    private static byte[] decrypt(byte[] data, byte[] key) throws Exception {
+        SecureRandom sr = new SecureRandom();
+        DESKeySpec dks = new DESKeySpec(key);
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+        SecretKey securekey = keyFactory.generateSecret(dks);
+        Cipher cipher = Cipher.getInstance("DES");
+        cipher.init(2, securekey, sr);
+        return cipher.doFinal(data);
     }
 
     public static String j(String data, String key) throws IOException, Exception {
