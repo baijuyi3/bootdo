@@ -27,7 +27,7 @@ public class Test3wh {
 
 
     private static List<c> a(File file, WenhuaPeriod period, LocalDateTime start, LocalDateTime end) throws IOException {
-        file = new File("D:\\Program Files\\交易\\数据\\Data_1hour\\CZCE\\hour\\00021021.dat");
+        file = new File("D:\\Program Files\\交易\\数据\\Data_1hour\\CZCE\\hour\\00051861.dat");
         period = period.MIN15;
         byte[] temp = org.apache.commons.io.b.f(file);
         int len = 37;

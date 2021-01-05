@@ -1,12 +1,20 @@
 package com.bootdo.utils;
 
+import com.bootdo.BootdoApplication;
+import com.bootdo.futures.dao.FuturesDao;
+import com.bootdo.system.dao.WhchartDao;
+import com.bootdo.system.domain.WhchartDO;
+import com.bootdo.system.service.WhchartService;
 import com.fasterxml.jackson.databind.r;
 import com.stock4j.core.util.helper.PinyinHelper;
 import com.stock4j.wenhua.Contract;
 import com.stock4j.wenhua.WenhuaMarket;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +23,7 @@ import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
 
+@Component
 public class Test4whName implements ApplicationContextAware {
     private static DecimalFormat zP = new DecimalFormat("00000000");
     private static DecimalFormat zQ = new DecimalFormat("000");
@@ -33,10 +42,15 @@ public class Test4whName implements ApplicationContextAware {
         zU.add("中金期权");
     }
 
+    @Autowired
+    private static WhchartDao whchartService;
+
+    private static WhchartDO whchart = new WhchartDO();
 
     public static void main(String[] args) {
-        File cont_file = Paths.get("D:\\Program Files\\交易\\wh6中粮期货x64\\Data\\CZCE", "cont.dat").toFile();
-        String mcode = org.apache.commons.io.c.aP("D:\\Program Files\\交易\\wh6中粮期货x64\\Data\\CZCE");
+        SpringApplication.run(BootdoApplication.class, args);
+        File cont_file = Paths.get("D:\\Program Files\\交易\\wh6中粮期货x64\\Data\\DCE", "cont.dat").toFile();
+        String mcode = org.apache.commons.io.c.aP("D:\\Program Files\\交易\\wh6中粮期货x64\\Data\\DCE");
         WenhuaMarket market = new WenhuaMarket("D:\\Program Files\\交易\\wh6中粮期货x64");
         byte[] b_temp = new byte[0];
         try {
@@ -92,6 +106,14 @@ public class Test4whName implements ApplicationContextAware {
                 cont.setInternalCode(org.slf4j.helpers.c.j(Arrays.copyOfRange(b, 8, 10)));
                 byte var12;
                 cont.setMarketAndBlockCode((var12 = b[10]) & 255, (var12 = b[11]) & 255);
+                if (1 == 1) {
+                    whchart.setWhcode(cont.getWhcode());
+                    whchart.setCode(cont.getScode());
+                    whchart.setFileName(cont.getFile());
+                    whchart.setName(cont.getSname());
+                    whchart.setAbbr(cont.getAbbr());
+                    whchartService.save(whchart);
+                }
                 conts.add(cont);
             }
         }
@@ -101,6 +123,6 @@ public class Test4whName implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-
+        this.whchartService = applicationContext.getBean(WhchartDao.class);
     }
 }

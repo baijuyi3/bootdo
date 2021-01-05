@@ -30,7 +30,6 @@ public class ReadExcelRM implements ApplicationContextAware {
     @Autowired
     private static FuturesDao futuresService;
 
-    public static ApplicationContext context = null;
     private static FuturesDO futures = new FuturesDO();
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
     private static SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
