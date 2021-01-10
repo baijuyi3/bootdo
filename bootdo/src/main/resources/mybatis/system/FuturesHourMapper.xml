@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.system.dao.FuturesHourDao">
+
+    <select id="get" resultType="com.bootdo.system.domain.FuturesHourDO">
+		select `id`,`trancode`,`time`,`opening`,`highest`,`lowest`,`closing`,`volume`,`vol_volume` from tb_futures_hour where trancode = #{value}
+	</select>
+
+    <select id="list" resultType="com.bootdo.system.domain.FuturesHourDO">
+        select `id`,`trancode`,`time`,`opening`,`highest`,`lowest`,`closing`,`volume`,`vol_volume` from tb_futures_hour
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="trancode != null and trancode != ''">and trancode = #{trancode}</if>
+            <if test="time != null and time != ''">and time = #{time}</if>
+            <if test="opening != null and opening != ''">and opening = #{opening}</if>
+            <if test="highest != null and highest != ''">and highest = #{highest}</if>
+            <if test="lowest != null and lowest != ''">and lowest = #{lowest}</if>
+            <if test="closing != null and closing != ''">and closing = #{closing}</if>
+            <if test="volume != null and volume != ''">and volume = #{volume}</if>
+            <if test="volVolume != null and volVolume != ''">and vol_volume = #{volVolume}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by trancode desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from tb_futures_hour
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="trancode != null and trancode != ''">and trancode = #{trancode}</if>
+            <if test="time != null and time != ''">and time = #{time}</if>
+            <if test="opening != null and opening != ''">and opening = #{opening}</if>
+            <if test="highest != null and highest != ''">and highest = #{highest}</if>
+            <if test="lowest != null and lowest != ''">and lowest = #{lowest}</if>
+            <if test="closing != null and closing != ''">and closing = #{closing}</if>
+            <if test="volume != null and volume != ''">and volume = #{volume}</if>
+            <if test="volVolume != null and volVolume != ''">and vol_volume = #{volVolume}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bootdo.system.domain.FuturesHourDO">
+		insert into tb_futures_hour
+		(
+			`id`, 
+			`trancode`, 
+			`time`, 
+			`opening`, 
+			`highest`, 
+			`lowest`, 
+			`closing`, 
+			`volume`, 
+			`vol_volume`
+		)
+		values
+		(
+			#{id}, 
+			#{trancode}, 
+			#{time}, 
+			#{opening}, 
+			#{highest}, 
+			#{lowest}, 
+			#{closing}, 
+			#{volume}, 
+			#{volVolume}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.bootdo.system.domain.FuturesHourDO">
+        update tb_futures_hour
+        <set>
+            <if test="id != null">`id` = #{id},</if>
+            <if test="time != null">`time` = #{time},</if>
+            <if test="opening != null">`opening` = #{opening},</if>
+            <if test="highest != null">`highest` = #{highest},</if>
+            <if test="lowest != null">`lowest` = #{lowest},</if>
+            <if test="closing != null">`closing` = #{closing},</if>
+            <if test="volume != null">`volume` = #{volume},</if>
+            <if test="volVolume != null">`vol_volume` = #{volVolume}</if>
+        </set>
+        where trancode = #{trancode}
+    </update>
+
+    <delete id="remove">
+		delete from tb_futures_hour where trancode = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from tb_futures_hour where trancode in
+        <foreach item="trancode" collection="array" open="(" separator="," close=")">
+            #{trancode}
+        </foreach>
+    </delete>
+
+</mapper>
