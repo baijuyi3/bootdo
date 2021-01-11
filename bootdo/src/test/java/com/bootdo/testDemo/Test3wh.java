@@ -34,7 +34,7 @@ public class Test3wh implements Runnable, ApplicationContextAware {
 
     public static void main(String[] args) {
         SpringApplication.run(BootdoApplication.class, args);
-        File file = new File("D:\\Program Files\\交易\\数据\\Data_1hour\\CZCE\\hour");
+        File file = new File("D:\\Program Files\\交易\\数据\\Data_1hour\\DCE\\hour");
         File[] tempList = file.listFiles();
 //        try {
 //            List<c> ticks = a(file, null, null, null);
@@ -60,7 +60,7 @@ public class Test3wh implements Runnable, ApplicationContextAware {
     }
 
     private static List<c> a(File file, WenhuaPeriod period, LocalDateTime start, LocalDateTime end) throws IOException {
-        file = new File("D:\\Program Files\\交易\\数据\\Data_1hour\\CZCE\\hour\\00051861.dat");
+//        file = new File("D:\\Program Files\\交易\\数据\\Data_1hour\\CZCE\\hour\\00051861.dat");
         period = period.MIN15;
         byte[] temp = org.apache.commons.io.b.f(file);
         int len = 37;
@@ -175,6 +175,7 @@ public class Test3wh implements Runnable, ApplicationContextAware {
     }
 
     public Test3wh(File file) {
+        this.file = file;
     }
 
     @Override

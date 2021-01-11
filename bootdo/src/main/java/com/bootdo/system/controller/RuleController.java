@@ -79,9 +79,9 @@ public class RuleController {
         Double profitLossRate = 0d;
         //平均交易盈亏总额
         Double profitLossAvg = 0d;
-        //最多连续盈利次数
+        //连续盈利次数
         Integer profitRunningTimes = 0;
-        //最多连续亏损次数
+        //连续亏损次数
         Integer lossRunningTimes = 0;
         //最大平仓亏损
         Double lossClosingPosition = 0d;
@@ -91,6 +91,8 @@ public class RuleController {
         Integer maxContract = 0;
         //账户收益率
         Double gainRate = 0d;
+        Integer profitRunningTimesMax = 0;//最多连续盈利次数
+        Integer lossRunningTimesMax = 0;//最多连续亏损次数
         //查询列表数据
         List<FuturesDO> futuresList = futuresService.likeList(params);
         Long days;
@@ -110,17 +112,56 @@ public class RuleController {
                 if (futuresList.get(i).getHighest() - futuresList.get(i).getOpening() > range) {
                     flag = 1;
                     totalTimes++;
-                    for (int j = i + 1; i < futuresList.size(); i++) {
+
+                    for (int j = i + 1; i < futuresList.size(); j++) {
                         Double singleProfit = futuresList.get(j).getOpening() - futuresList.get(i).getOpening() - range;
+                        Double singlelowest = futuresList.get(j).getLowest() - futuresList.get(i).getOpening() - range;
+
                         if (singleProfit > 0) {
                             grossProfit = grossProfit + singleProfit; // 毛利润
                             profitTimes++; //获利次数
+                            profitRunningTimes++;//最多连续盈利次数
                             if (singleProfit > singleProfitMax) {
                                 singleProfitMax = singleProfit;
                             }
+                            if (lossRunningTimesMax < lossRunningTimes) {
+                                lossRunningTimesMax = lossRunningTimes;
+                            }
+                            lossRunningTimes = 0;
+                            break;
+                        } else {
+                            if (singleProfit <= -lossStop) {
+                                grossLoss = grossLoss + singleProfit;
+                                if (singleLossMax > singleProfit) {
+                                    singleLossMax = singleProfit;
+                                }
+                                lossTimes++;
+                                lossRunningTimes++;
+                                if (profitRunningTimesMax < profitRunningTimes) {
+                                    profitRunningTimesMax = profitRunningTimes;
+                                }
+                                profitRunningTimes = 0;
+                                break;
+                            } else {
+                                if (singlelowest < lossStop) {
+                                    grossLoss = grossLoss + lossStop;
+                                    if (singleLossMax > lossStop) {
+                                        singleLossMax = lossStop;
+                                    }
+                                    lossTimes++;
+                                    lossRunningTimes++;
+                                    if (profitRunningTimesMax < profitRunningTimes) {
+                                        profitRunningTimesMax = profitRunningTimes;
+                                    }
+                                    profitRunningTimes = 0;
+                                    break;
+                                }
+                            }
+
                         }
                     }
                 }
+
                 //下涨趋势
                 if (futuresList.get(i).getOpening() - futuresList.get(i).getLowest() > range) {
                     totalTimes++;
